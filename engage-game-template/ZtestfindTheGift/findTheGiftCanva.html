@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Find the path</title>
+<style>
+canvas {
+    border:1px solid #d3d3d3;
+    background-image: url('http://127.0.0.1:3001/findTheGift/gift.svg');
+    background-repeat: no-repeat;
+
+}
+</style>
+</head>
+<body onload="startGame()">
+<script>
+
+var myGamePiece;
+var myObstacle;
+
+function startGame() {
+    myGamePiece = new component(30, 30, "red", 10, 120);
+    Obstacles()
+    myGameArea.start();
+}
+
+var Obstacles = () =>{
+    myObstacle1  = new component(5, 550, "green", 0, 0);  
+    myObstacle2  = new component(550, 5, "green", 0, 0); 
+    myObstacle3  = new component(5, 550, "green", 545, 0);  
+    myObstacle4  = new component(35, 5, "green", 0, 545);  
+    myObstacle5  = new component(70, 5, "green", 0, 64); 
+    myObstacle6  = new component(36, 5, "green", 0, 128); 
+    myObstacle7  = new component(37, 5, "green", 0, 354); 
+    myObstacle8  = new component(37, 5, "green", 0, 450); 
+    myObstacle9  = new component(132, 5, "green", 32, 32); 
+    myObstacle10  = new component(132, 5, "green", 32, 32);
+    myObstacle11  = new component(40, 5, "green", 260, 32);    
+    myObstacle12  = new component(68, 5, "green", 355, 32);
+    myObstacle13  = new component(35, 5, "green", 484, 32);
+    myObstacle14  = new component(35, 5, "green", 162, 63);
+    myObstacle15  = new component(33, 5, "green", 228, 63);
+    myObstacle16  = new component(68, 5, "green", 355, 32);
+    myObstacle17  = new component(35, 5, "green", 484, 32);
+    myObstacle18  = new component(35, 5, "green", 290, 63);
+    myObstacle19  = new component(35, 5, "green", 356, 63);
+    myObstacle20  = new component(65, 5, "green", 420,63);  
+    myObstacle21  = new component(70, 5, "green",30,95);
+    myObstacle22  = new component(70, 5, "green",30,95);  
+    myObstacle23  = new component(36, 5, "green",225,95);  
+    myObstacle24  = new component(70, 5, "green",320,95);  
+    myObstacle25  = new component(60, 5, "green",485,95); 
+    myObstacle26  = new component(100, 5, "green", 65, 128); 
+    myObstacle27  = new component(35, 5, "green", 195, 128); 
+    myObstacle28  = new component(35, 5, "green", 291, 128);  
+    myObstacle29  = new component(100, 5, "green", 420, 128); 
+    myObstacle30  = new component(100, 5, "green", 33, 160);
+    myObstacle31  = new component(35, 5, "green", 161, 160);   
+    myObstacle32  = new component(98, 5, "green", 228, 160);
+    myObstacle33  = new component(98, 5, "green", 356, 160);
+    myObstacle34  = new component(35, 5, "green", 510, 160);
+    myObstacle35  = new component(35, 5, "green", 65, 192);
+    myObstacle36  = new component(34, 5, "green", 195, 192);
+    myObstacle37  = new component(34, 5, "green", 323, 192);
+    myObstacle38  = new component(34, 5, "green", 419, 192);
+    myObstacle39  = new component(34, 5, "green", 485, 192);
+    myObstacle40  = new component(34, 5, "green", 162, 226);
+    myObstacle41  = new component(67, 5, "green", 355, 226);
+    myObstacle42  = new component(100, 5, "green", 452, 226);
+    myObstacle43  = new component(34, 5, "green", 66, 257);
+    myObstacle44  = new component(34, 5, "green", 130, 257);
+    myObstacle45  = new component(36, 5, "green", 483, 257);
+    myObstacle46  = new component(64, 5, "green", 100, 290);
+    myObstacle47  = new component(38, 5, "green", 452, 290);
+    myObstacle48  = new component(33, 5, "green", 35, 320);
+    myObstacle49  = new component(70, 5, "green", 128, 320);
+    myObstacle50  = new component(132, 5, "green",355, 320);
+    myObstacle51  = new component(68, 5, "green",97, 354);
+    myObstacle52  = new component(35, 5, "green",194, 354);
+    myObstacle53  = new component(35, 5, "green",323, 354);
+    myObstacle54  = new component(67, 5, "green",420, 354);
+    myObstacle55  = new component(98, 5, "green",34, 386);
+    myObstacle56  = new component(98, 5, "green",225, 386);
+    myObstacle57  = new component(35, 5, "green",516, 386);
+    myObstacle58  = new component(35, 5, "green",33, 418);
+    myObstacle59  = new component(35, 5, "green",97, 418);
+    myObstacle60  = new component(70, 5, "green",162, 418);
+    myObstacle61  = new component(35, 5, "green",258, 418);
+    myObstacle62  = new component(100, 5, "green",388, 418);
+    myObstacle63  = new component(35, 5, "green",65, 450);
+    myObstacle64  = new component(70, 5, "green",130, 450);
+    myObstacle65  = new component(165, 5, "green",226, 450);
+    myObstacle66  = new component(35, 5, "green",484, 450);
+    myObstacle67  = new component(35, 5, "green",34, 482);
+    myObstacle68  = new component(35, 5, "green",98, 482);
+    myObstacle69  = new component(200, 5, "green",162, 482);
+    myObstacle70  = new component(68, 5, "green",419, 482);
+    myObstacle71  = new component(36, 5, "green",65, 515);
+    myObstacle72  = new component(36, 5, "green",129, 515);
+    myObstacle73  = new component(70, 5, "green",290, 515);
+    myObstacle74  = new component(35, 5, "green",387, 515);
+    myObstacle75  = new component(195, 5, "green",67, 545);
+    myObstacle76  = new component(195, 5, "green",291, 545);
+    myObstacle77  = new component(35, 5, "green",517, 545);
+    myObstacle78  = new component(5, 165, "green", 32, 160);  
+    myObstacle79  = new component(5, 63, "green", 64, 97);  
+    myObstacle80  = new component(5, 65, "green", 65, 192);  
+    myObstacle81  = new component(5, 100, "green", 65, 290);
+    myObstacle82  = new component(5, 35, "green", 32, 388);  
+    myObstacle83  = new component(5, 65, "green", 32, 484); 
+    myObstacle84  = new component(5, 35, "green", 65, 420);
+    myObstacle85  = new component(5, 35, "green", 65, 520);
+    myObstacle86  = new component(5, 35, "green", 97, 65);
+    myObstacle87  = new component(35, 5, "green", 97, 65);
+    myObstacle88  = new component(5, 70, "green", 95, 160);
+    myObstacle89  = new component(5, 100, "green", 95, 259);
+    myObstacle90  = new component(5, 33, "green", 95, 454);
+
+ 
+
+  
+
+
+
+
+}
+
+var Obstaclesupdate = () =>{
+    myObstacle1.update();
+    myObstacle2.update();
+    myObstacle3.update();
+    myObstacle4.update();
+    myObstacle5.update();
+    myObstacle6.update();
+    myObstacle7.update();
+    myObstacle8.update();
+    myObstacle9.update();
+    myObstacle10.update();
+    myObstacle11.update();
+    myObstacle12.update();
+    myObstacle13.update();
+    myObstacle14.update();
+    myObstacle15.update();
+    myObstacle16.update();
+    myObstacle17.update();
+    myObstacle18.update();
+    myObstacle19.update();
+    myObstacle20.update();
+    myObstacle21.update();
+    myObstacle22.update();
+    myObstacle23.update();
+    myObstacle24.update();
+    myObstacle25.update();
+    myObstacle26.update();
+    myObstacle27.update();
+    myObstacle28.update();
+    myObstacle29.update();
+    myObstacle30.update();
+    myObstacle31.update();
+    myObstacle32.update();
+    myObstacle33.update();
+    myObstacle34.update();
+    myObstacle35.update();
+    myObstacle36.update();
+    myObstacle37.update();
+    myObstacle38.update();
+    myObstacle39.update();
+    myObstacle40.update();
+    myObstacle41.update();
+    myObstacle42.update();
+    myObstacle43.update();
+    myObstacle44.update();
+    myObstacle45.update();
+    myObstacle46.update();
+    myObstacle47.update();
+    myObstacle48.update();
+    myObstacle49.update();
+    myObstacle50.update();
+    myObstacle51.update();
+    myObstacle52.update();
+    myObstacle53.update();
+    myObstacle54.update();
+    myObstacle55.update();
+    myObstacle56.update();
+    myObstacle57.update();
+    myObstacle58.update();
+    myObstacle59.update();
+    myObstacle50.update();
+    myObstacle51.update();
+    myObstacle52.update();
+    myObstacle53.update();
+    myObstacle54.update();
+    myObstacle55.update();
+    myObstacle56.update();
+    myObstacle57.update();
+    myObstacle58.update();
+    myObstacle59.update();
+    myObstacle60.update();
+    myObstacle61.update();
+    myObstacle62.update();
+    myObstacle63.update();
+    myObstacle64.update();
+    myObstacle65.update();
+    myObstacle66.update();
+    myObstacle67.update();
+    myObstacle68.update();
+    myObstacle69.update();
+    myObstacle70.update();
+    myObstacle71.update();
+    myObstacle72.update();
+    myObstacle73.update();
+    myObstacle74.update();
+    myObstacle75.update();
+    myObstacle76.update();
+    myObstacle77.update();
+    myObstacle78.update();
+    myObstacle79.update();
+    myObstacle80.update();
+    myObstacle81.update();
+    myObstacle82.update();
+    myObstacle83.update();
+    myObstacle84.update();
+    myObstacle85.update();
+    myObstacle86.update();
+    myObstacle87.update();
+    myObstacle88.update();
+    myObstacle89.update();
+    myObstacle90.update();
+    // myObstacle91.update();
+    // myObstacle92.update();
+    // myObstacle93.update();
+    // myObstacle94.update();
+    // myObstacle95.update();
+    // myObstacle96.update();
+    // myObstacle97.update();
+    // myObstacle98.update();
+    // myObstacle99.update();
+    // myObstacle100.update();
+    // myObstacle101.update();
+    // myObstacle102.update();
+    // myObstacle103.update();
+    // myObstacle104.update();
+    // myObstacle105.update();
+    // myObstacle106.update();
+    // myObstacle107.update();
+    // myObstacle108.update();
+}
+
+
+var myGameArea = {
+    canvas : document.createElement("canvas"),
+    start : function() {
+    this.canvas.width = 550;
+    this.canvas.height = 550;
+    // this.canvas.style.cursor = "none"; //hide the original cursor
+    this.context = this.canvas.getContext("2d");
+    document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+    
+    this.interval = setInterval(updateGameArea, 20);
+   
+    window.addEventListener('mousemove', function (e) {
+      myGameArea.x = e.pageX;
+      myGameArea.y = e.pageY;
+      console.log(e.pageX,e.pageY)
+    })
+  },
+  clear : function(){
+    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+  },
+    stop : function() {
+        clearInterval(this.interval);
+    }
+}
+
+function component(width, height, color, x, y) {
+    this.width = width;
+    this.height = height;
+    this.speedX = 0;
+    this.speedY = 0;    
+    this.x = x;
+    this.y = y;
+        
+    this.update = function() {
+        ctx = myGameArea.context;
+        ctx.fillStyle = color;
+        ctx.fillRect(this.x, this.y, this.width, this.height);
+    }
+    this.crashWith = function(otherobj) {
+        var myleft = this.x;
+        var myright = this.x + (this.width);
+        var mytop = this.y;
+        var mybottom = this.y + (this.height);
+        var otherleft = otherobj.x;
+        var otherright = otherobj.x + (otherobj.width);
+        var othertop = otherobj.y;
+        var otherbottom = otherobj.y + (otherobj.height);
+        var crash = true;
+        if ((mybottom < othertop) || (mytop > otherbottom) || (myright < otherleft) || (myleft > otherright)) {
+            crash = false;
+        }
+        return crash;
+    }
+}
+
+function updateGameArea() {
+    // if (myGamePiece.crashWith(myObstacle)) {
+    //     myGameArea.stop();
+    // } else {
+    //     myGameArea.clear();
+    //     myObstacle.update();
+    //     myGamePiece.x += myGamePiece.speedX;
+    //     myGamePiece.y += myGamePiece.speedY;    
+    //     myGamePiece.update();
+    // }
+    myGameArea.clear();
+    // if (myGamePiece.crashWith(myObstacle1)) {
+    //     myGameArea.stop();
+    // } 
+    if (myGameArea.x && myGameArea.y) {
+    myGamePiece.x = myGameArea.x;
+    myGamePiece.y = myGameArea.y;
+    Obstaclesupdate()
+  }
+  myGamePiece.update();
+}
+
+
+</script>
+
+
+</body>
+</html>

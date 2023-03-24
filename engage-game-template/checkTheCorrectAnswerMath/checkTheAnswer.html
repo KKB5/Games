@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            height: auto;
+            background-color: #F4F7FB;
+            font-family: sans-serif;
+            height: 90vh;
+        }
+
+
+        #gamecontainer {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            text-align: center;
+            width: 560px;
+            height: 480px;
+            margin: auto;
+            background-color: #FFFFFF;
+            padding: 2rem;
+            border-radius: 26px;
+            border: none;
+        }
+
+        #progressbar {
+            background: #2563EB;
+            border-radius: 8px;
+            border: none;
+            width: 24px;
+            transition: width 2s;
+            height: 24px;
+
+        }
+
+        #mathcontent {
+            text-decoration: solid;
+            margin: auto;
+            margin-bottom: 100px;
+            border: none;
+            border-radius: 26px;
+            width: 189px;
+            padding: 20px;
+            font-weight: 700;
+            font-size: xx-large;
+        }
+
+        #progressbardiv {
+            background-color: #EDEFF1;
+            border-radius: 8px;
+            border: none;
+            width: 512px;
+            margin: auto;
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <div class="fullcontainer">
+    <div id="gamecontainer">
+        <h2 style="font-weight:700; margin-bottom: 60px;">Answer 5 Question</h2>
+        <div id="progressbardiv">
+            <div id="progressbar"></div>
+        </div>
+        <div id="mathcontent">
+
+        </div>
+        <div class="buttonsample">
+            <button onclick="correctans()"><svg width="70" height="70" viewBox="0 0 70 70" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <rect width="70" height="70" rx="35" fill="#49D57A" />
+                    <path
+                        d="M32.3582 45.5C32.0128 45.5003 31.6708 45.4323 31.3517 45.3001C31.0326 45.1678 30.7428 44.9739 30.4988 44.7294L22.6089 36.8395C22.1317 36.343 21.8683 35.6793 21.8751 34.9908C21.882 34.3022 22.1585 33.6438 22.6454 33.157C23.1323 32.6701 23.7907 32.3936 24.4793 32.3868C25.1678 32.38 25.8315 32.6435 26.3279 33.1207L32.1811 38.9738L43.4882 25.4053C43.9398 24.8855 44.5772 24.5635 45.2636 24.5084C45.95 24.4534 46.6306 24.6695 47.1593 25.1106C47.6881 25.5517 48.0229 26.1825 48.0918 26.8676C48.1607 27.5527 47.9582 28.2375 47.5279 28.7751L34.3782 44.555C34.1444 44.8356 33.8546 45.0644 33.5273 45.2267C33.2 45.389 32.8425 45.4813 32.4776 45.4976C32.4378 45.5 32.398 45.5 32.3582 45.5V45.5Z"
+                        fill="white" />
+                </svg>
+            </button>
+            <button onclick="falseans()"><svg width="70" height="70" viewBox="0 0 70 70" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <rect width="70" height="70" rx="35" fill="#DC2626" />
+                    <path
+                        d="M38.7003 35L44.7196 28.9874C44.9658 28.7445 45.1615 28.4553 45.2955 28.1366C45.4294 27.8178 45.4989 27.4757 45.5 27.1301C45.5011 26.7844 45.4337 26.4419 45.3018 26.1223C45.1698 25.8027 44.9759 25.5123 44.7312 25.2679C44.4865 25.0234 44.1958 24.8298 43.8758 24.698C43.5559 24.5662 43.213 24.4989 42.8669 24.5C42.5208 24.5011 42.1784 24.5706 41.8593 24.7044C41.5402 24.8382 41.2507 25.0337 41.0076 25.2797L34.9883 31.2921L28.9691 25.2797C28.4753 24.7953 27.8101 24.5254 27.1181 24.5285C26.4261 24.5316 25.7633 24.8076 25.274 25.2964C24.7847 25.7852 24.5084 26.4472 24.5052 27.1384C24.5021 27.8297 24.7724 28.4942 25.2572 28.9874L31.2763 35L25.2571 41.0125C24.77 41.5053 24.4978 42.1705 24.5 42.863C24.5022 43.5555 24.7786 44.219 25.2688 44.7087C25.759 45.1984 26.4233 45.4744 27.1166 45.4766C27.8098 45.4787 28.4758 45.2068 28.9691 44.7203L34.9883 38.7078L41.0076 44.7204C41.2507 44.9664 41.5402 45.1619 41.8593 45.2957C42.1784 45.4295 42.5209 45.4989 42.867 45.5C43.213 45.5011 43.5559 45.4338 43.8759 45.302C44.1958 45.1702 44.4865 44.9765 44.7312 44.732C44.9759 44.4876 45.1698 44.1972 45.3017 43.8776C45.4337 43.558 45.501 43.2155 45.4999 42.8698C45.4988 42.5241 45.4293 42.1821 45.2953 41.8633C45.1614 41.5446 44.9656 41.2554 44.7194 41.0125L38.7003 35Z"
+                        fill="white" />
+                </svg>
+            </button>
+        </div>
+
+    </div>
+</div>
+
+
+
+    <script>
+
+        var wd = 0
+
+        var progress = document.getElementById("progressbar");
+
+        fullfunction = () => {
+
+            var operatorlist = [
+                "+",
+                "-",
+                "*",
+                "/"
+            ];
+
+            var randomanswers = [
+                "0",
+                "1",
+            ];
+
+            var x, y
+
+            let answerchange = randomanswers[Math.floor(Math.random() * randomanswers.length)];
+
+            let mathcontentscript = document.getElementById("mathcontent")
+
+
+
+
+
+            correcttextContent = () => {
+
+
+                var randomoperator = operatorlist[Math.floor(Math.random() * operatorlist.length)];
+
+
+                x = Math.floor(Math.random() * 20);
+
+                y = Math.floor(Math.random() * 10);
+
+                var co = correctAnswer(x, y, randomoperator)
+
+                return co
+
+            }
+
+
+            correctAnswer = (x, y, ra) => {
+                let answ = eval(`${x}${ra}${y}`)
+                let final = `${x} ${ra} ${y} = ${answ}`
+                if (answ == "") {
+                    fullfunction()
+                }
+                return `${(answ === Math.floor(answ) ? final : correcttextContent())}`
+            }
+
+
+            falsetextContent = () => {
+
+                var randomoperator = operatorlist[Math.floor(Math.random() * operatorlist.length)];
+
+
+                x = Math.floor(Math.random() * 10);
+
+                y = Math.floor(Math.random() * 20);
+
+
+                var co = falseAnswer(x, y, randomoperator)
+
+                return co
+
+            }
+
+            falseAnswer = (x, y, ra) => {
+                let answ = eval(`${x}${ra}${y}`)
+                var randomop = operatorlist[Math.floor(Math.random() * operatorlist.length)]
+                let falseanswer = eval(`${answ} ${randomop} ${Math.floor(Math.random() * 10)}`)
+                // console.log(falseanswer)
+                if (falseanswer == "") {
+                    fullfunction()
+                }
+                let final = `${x} ${ra} ${y} = ${falseanswer}`
+                return `${(falseanswer === Math.floor(falseanswer) ? final : falsetextContent())}`
+            }
+
+
+
+            combinedContent = () => {
+                if (answerchange == 0) {
+                    return correcttextContent();
+                }
+                else {
+                    return falsetextContent();
+                }
+            }
+
+            correctans = () => {
+
+                if (answerchange == 0) {
+
+                    alert("CorrectAnswer")
+                    if (progress.style.width == "82.5%") {
+                        alert("Completed")
+                        location.reload()
+                    }
+                    fullfunction()
+                    wd = wd + 16.5
+                    progress.style.width = `${wd}%`
+
+                }
+                else {
+
+                    fullfunction()
+                    alert("FalseAnswer")
+
+                }
+
+            }
+
+
+
+
+            falseans = () => {
+                if (answerchange == 1) {
+
+                    console.log(progress.style.width)
+
+                    fullfunction()
+                    alert("CorrectAnswer")
+                    if (progress.style.width == "82.5%") {
+                        alert("Completed")
+                        location.reload()
+                    }
+                    wd = wd + 16.5
+                    progress.style.width = `${wd}%`
+                }
+                else {
+                    fullfunction()
+                    alert("FalseAnswer")
+
+                }
+            }
+
+            mathcontentscript.innerText = `${combinedContent()}`;
+
+
+        }
+
+
+
+
+        fullfunction()
+
+
+
+
+    </script>
+
+</body>
+
+</html>

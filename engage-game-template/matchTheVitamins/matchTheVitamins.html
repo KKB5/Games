@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        body{
+            background-color:  #FAFCFE;
+            display: flex;
+            justify-content: center;
+        }
+        .gamecontainer{
+            width: 60%;
+            display: flex;
+            flex-wrap: wrap;
+            background-color: #FFFFFF;
+            border: 1px solid #DCE0E4 ;
+            border-radius: 10px;
+            margin-top: 1%;
+        }
+        .section{
+            width: 50%;
+        }
+        .gamecard{
+            height: 100px;
+            display: flex;
+            margin: 6%;
+            justify-content: center;
+        }
+        .vitamincard{
+            height: 100px;
+            display: flex;
+            margin: 6%;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            font-family: sans-serif;
+            font-weight: 700;
+            font-size: large;
+            border: 1px solid #DCE0E4 ;
+            border-radius: 50px;
+        }
+        .vitamincardActive{
+            height: 100px;
+            display: flex;
+            margin: 6%;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            font-family: sans-serif;
+            font-weight: 700;
+            font-size: large;
+            background-color: rgba(183, 218, 255, 0.704);
+            border: 1px solid #DCE0E4 ;
+            border-radius: 50px;
+            pointer-events: none 
+        }
+        .imgborder{
+            border: 1px solid #DCE0E4 ;
+            border-radius: 50px;
+            padding: 2px;
+        }
+        .imgborderActive{
+            border: 1px solid #DCE0E4 ;
+            border-radius: 50px;
+            padding: 2px;
+            background-color: rgba(183, 218, 255, 0.704);
+            pointer-events: none 
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="gamecontainer">
+        <div class="section">
+            <div class="gamepanel" id="gamepanel"></div>
+        </div>
+        
+        <div class="section">
+            <div class="vitaminpanel" id="vitaminpanel"></div>
+        </div>
+        
+        
+        <script>
+            const gamedata = [
+                {
+                    img: "Blueberry.png",
+                    vitamins: "Vitamin-A",
+                    name: "Blueberry"
+
+                },
+                {
+                    img: "Avacado.png",
+                    vitamins: "Vitamin-B",
+                    name: "Avacado"
+                },
+                {
+                    img: "Brocolli.png",
+                    vitamins: "Vitamin-C",
+                    name: "Brocolli"
+                },
+                {
+                    img: "Bun.png",
+                    vitamins: "Vitamin-D",
+                    name: "Bun"
+                },
+                {
+                    img: "Burger.png",
+                    vitamins: "Vitamin-E",
+                    name: "Burger"
+                },
+                // {
+                //     img: "Cake.png",
+                //     value: "Cake",
+                //     type: "FastFood"
+                // },
+                // {
+                //     img: "Red_apple.png",
+                //     value: "Red_apple",
+                //     type: "fruit",
+                //     type: "fruits&vegetables"
+                // },
+                // {
+                //     img: "egg.png",
+                //     value: "egg",
+                //     type: "FastFood"
+                // },
+                // {
+                //     img: "papaya.png",
+                //     value: "papaya",
+                //     type: "fruits&vegetables"
+                // },
+                // // {
+                // //     img: "Orangejuice.png",
+                // //     value: "Orangejuice",
+                // //     type: "fruits&vegetables"
+                // // },
+                // // {
+                // //     img: "Toast.png",
+                // //     value: "Toast",
+                // //     type: "FastFood"
+                // // },
+                // // {
+                // //     img: "French.png",
+                // //     value: "French",
+                // //     type: "FastFood"
+                // // },
+                // // {
+                // //     img: "Meat.png",
+                // //     value: "Meat",
+                // //     type: "FastFood"
+                // // },
+                // // {
+                // //     img: "Ice_cream.png",
+                // //     value: "Ice_cream",
+                // //     type: "FastFood"
+                // // },
+                // // {
+                // //     img: "Grapes.png",
+                // //     value: "Grapes",
+                // //     type: "fruits&vegetables"
+                // // },
+                // // {
+                // //     img: "Pizza.png",
+                // //     value: "Pizza",
+                // //     type: "FastFood"
+                // // },
+            ];
+
+            function shuffleArray(array) {
+            for (var i = array.length - 1; i > 0; i--) {
+                var j = Math.floor(Math.random() * (i + 1));
+                var temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+            }
+ 
+            return array;
+           }
+
+           // ArrayShuffle
+           const shufflegamedataImage = [...gamedata]
+           shuffleArray(shufflegamedataImage)
+           const shufflegamedataVitamins = [...gamedata]
+           shuffleArray(shufflegamedataVitamins)
+            
+
+            var imgtestcount = 0
+            var vitamintestcount = 0
+            var imgcount = 0
+            var vitamincount = 0
+            var imglastCharRemoved
+            var vitaminPanelRemoved
+            var imgIdreset
+            var vitaminIdreset
+
+
+
+
+            function imgtest(event) {
+                var imgPanel = document.getElementById(event.target.id);
+                var vitaminAnswerReset = document.getElementById(vitaminIdreset);
+                imgIdreset = event.target.id
+                imglastCharRemoved = (event.target.id).slice(0, (event.target.id).length -3);
+                imgPanel.setAttribute("class","imgborderActive");
+                if(vitaminPanelRemoved==imglastCharRemoved){
+                    imgcount++
+                    vitamincount++
+                    if((vitamincount==vitamintestcount) || (imgcount==imgtestcount) ){
+                        alert("Completed")
+                        location.reload()
+                    }
+                    alert("Correct Find More")
+                    imglastCharRemoved = null
+                    vitaminPanelRemoved = null
+                }else if(vitaminPanelRemoved==null){
+                    imgPanel.setAttribute("class","imgborderActive");
+                }else if((vitaminPanelRemoved!=imglastCharRemoved) && (vitaminPanelRemoved!=null) ){
+                    alert("Try Again")
+                    imgPanel.setAttribute("class","imgborder");
+                    vitaminAnswerReset.setAttribute("class","vitamincard");
+                    vitaminIdreset = null
+                    imglastCharRemoved = null
+                    vitaminPanelRemoved = null
+                }
+
+            }
+
+
+            function vitamintest(event) {
+                var vitaminPanel = document.getElementById(event.target.id);
+                vitaminIdreset = event.target.id
+                var imgAnswerReset = document.getElementById(imgIdreset);
+                vitaminPanelRemoved = (event.target.id).slice(0, (event.target.id).length -2);
+                vitaminPanel.setAttribute("class","vitamincardActive");
+                if(vitaminPanelRemoved==imglastCharRemoved){
+                    imgcount++
+                    vitamincount++
+                    if((vitamincount==vitamintestcount) || (imgcount==imgtestcount) ){
+                        alert("Completed")
+                        location.reload()
+                    }
+                    alert(`Correct Find More`)
+                    imglastCharRemoved = null
+                    vitaminPanelRemoved = null
+                }else if(imglastCharRemoved==null){
+                    vitaminPanel.setAttribute("class","vitamincardActive");
+                }else if(vitaminPanelRemoved!=imglastCharRemoved && (imglastCharRemoved!=null) ){
+                    alert("Tryagain")
+                    vitaminPanel.setAttribute("class","vitamincard");
+                    imgAnswerReset.setAttribute("class","imgborder")
+                    imgAnswerReset = null
+                    imglastCharRemoved = null
+                    vitaminPanelRemoved = null
+                }
+                else{
+                    vitaminPanel.setAttribute("class","vitamincard");
+                    imglastCharRemoved = null
+                    vitaminPanelRemoved = null
+                }
+                
+            }
+
+
+            let gamepanel = document.getElementById('gamepanel');
+            let data = '';
+
+
+
+
+            shufflegamedataImage.forEach((card, index) => {
+                data = `
+
+                <div class="gamecard" id="${card.vitamins}">
+                        <img src="${card.img}" alt="${card.name}" id="${card.vitamins}Img"  class="imgborder"  onclick="imgtest(event)"/>
+                </div>      
+            `
+            imgtestcount++
+                gamepanel.innerHTML += data;
+                data = '';
+            })
+
+
+
+            let vitaminpanel = document.getElementById('vitaminpanel');
+            let vitaminpaneldata = '';
+
+
+
+            shufflegamedataVitamins.forEach((card, index) => {
+                vitaminpaneldata = `
+                <div class="vitamincard" data-active="0" data-match="0" data-type="${card.type}" id="${card.vitamins}Vi" onclick="vitamintest(event)">
+                  ${card.vitamins}
+               </div>        
+            `
+               vitamintestcount++
+
+                vitaminpanel.innerHTML += vitaminpaneldata;
+                vitaminpaneldata = '';
+            })
+
+
+
+
+
+
+        </script>
+</body>
+
+</html>

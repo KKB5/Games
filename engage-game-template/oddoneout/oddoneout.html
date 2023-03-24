@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+
+            /* background: white; */
+            height: 100vh;
+            margin: 0px;
+            padding: 10px;
+
+        }
+
+        .gamecontainer {
+            display: flex;
+            width: 80%;
+            height: 80%;
+            margin: 4% auto;
+            background: #FAFCFE;
+            padding: 2rem;
+            border-radius: 26px;
+            /* border: 1px solid gray; */
+        }
+
+        .gamepanel {
+
+            display: flex;
+            justify-content: space-evenly;
+            flex-wrap: wrap;
+            width: 100%;
+
+        }
+
+        .gamecard {
+            width: auto;
+            background-color: #FFFFFF;
+            width: 20%;
+            padding: 1%;
+            margin: 1%;
+            display: flex;
+            justify-content: center;
+            border: 2px solid none;
+            border-radius: 20px;
+        }
+
+        .activecard {
+            width: auto;
+            background-color: rgba(183, 218, 255, 0.704);
+            width: 20%;
+            padding: 1%;
+            margin: 1%;
+            display: flex;
+            justify-content: center;
+            border: 2px solid none;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="gamecontainer">
+        <div class="gamepanel" id="gamepanel">
+
+        </div>
+        <script>
+            const gamedata = [
+                {
+                    img: "Blueberry.png",
+                    value: "Blueberry",
+                    type: "fruits&vegetables"
+                },
+                {
+                    img: "Avacado.png",
+                    value: "Avacado",
+                    type: "fruits&vegetables"
+                },
+                {
+                    img: "Brocolli.png",
+                    value: "Brocolli",
+                    type: "fruits&vegetables"
+                },
+                {
+                    img: "Bun.png",
+                    value: "Bun",
+                    type: "FastFood"
+                },
+                {
+                    img: "Burger.png",
+                    value: "Burger",
+                    type: "FastFood"
+                },
+                {
+                    img: "Cake.png",
+                    value: "Cake",
+                    type: "FastFood"
+                },
+                {
+                    img: "Red_apple.png",
+                    value: "Red_apple",
+                    type: "fruit",
+                    type: "fruits&vegetables"
+                },
+                {
+                    img: "egg.png",
+                    value: "egg",
+                    type: "FastFood"
+                },
+                {
+                    img: "papaya.png",
+                    value: "papaya",
+                    type: "fruits&vegetables"
+                },
+                {
+                    img: "Orangejuice.png",
+                    value: "Orangejuice",
+                    type: "fruits&vegetables"
+                },
+                {
+                    img: "Toast.png",
+                    value: "Toast",
+                    type: "FastFood"
+                },
+                {
+                    img: "French.png",
+                    value: "French",
+                    type: "FastFood"
+                },
+                {
+                    img: "Meat.png",
+                    value: "Meat",
+                    type: "FastFood"
+                },
+                {
+                    img: "Ice_cream.png",
+                    value: "Ice_cream",
+                    type: "FastFood"
+                },
+                {
+                    img: "Grapes.png",
+                    value: "Grapes",
+                    type: "fruits&vegetables"
+                },
+                {
+                    img: "Pizza.png",
+                    value: "Pizza",
+                    type: "FastFood"
+                },
+
+            ];
+            let gamepanel = document.getElementById('gamepanel');
+            let data = '';
+            let currentobject = {
+                index: "",
+                value: ""
+            }
+
+            let datatypvalue = [];
+
+
+
+
+            gamedata.forEach((card, index) => {
+                data = `
+
+                <div class="gamecard" data-active="0" data-match="0" data-type="${card.type}" id="${card.value}" onclick="test(event)">
+                        <img src="${card.img}" alt="${card.value}" id="${card.value}"/>
+                </div>              
+            `
+                datatypvalue.push(card.type);
+
+
+                gamepanel.innerHTML += data;
+                data = '';
+            })
+
+            let compdata = datatypvalue[0]
+
+            let compdatacount = 0
+
+            let clickdatacount = 0
+
+            let oddtype = ""
+
+            datatypvalue.forEach(myFunction);
+
+            function myFunction(item, index) {
+                if (item == compdata) {
+                    compdatacount++
+                }
+                return compdatacount
+            }
+
+            if (myFunction() < (datatypvalue.length + 1)) {
+                oddtype = compdata
+            } else {
+                for (let i = 0; i < datatypvalue.length; i++) {
+                    if(datatypvalue[0]!=datatypvalue[i]){
+                        compdata = datatypvalue[i]
+                        break
+                    }
+                }
+            }
+
+
+
+            function test(event) {
+                let getgamecards = document.getElementById(event.target.id);
+                let dataactive = getgamecards.getAttribute('data-active');
+                let datavalue = getgamecards.getAttribute('data-type');
+                let datamatch = getgamecards.getAttribute('data-match');
+
+                
+
+                if(oddtype==datavalue){
+                
+                    
+                    let dataactivetest = getgamecards.getAttribute("class");
+                    clickdatacount++
+                    if(compdatacount>clickdatacount && dataactivetest!="activecard" ){
+                        getgamecards.setAttribute("class","activecard");
+                        alert(` Find More`)
+                        console.log(clickdatacount) 
+                    }else if(compdatacount==clickdatacount){
+                        alert(`Congrats`)
+                    }
+                }
+
+               
+                else{
+                    alert("Tryagain")
+                    clickdatacount++
+                    for (let i = 1; i < clickdatacount; i++) {
+                        let getgamecardsreset = document.getElementsByClassName("activecard");
+                        getgamecardsreset[0].setAttribute("class","gamecard");
+                    }
+                    clickdatacount=0    
+                    console.log(clickdatacount)                
+                }
+            }
+
+
+
+
+
+
+
+
+            
+
+            
+
+
+
+
+
+
+
+
+
+
+
+
+        </script>
+</body>
+
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find The Way</title>
+
+    <style>
+        html body{
+            background-color: #FAFCFE;
+            height: 100%;
+            margin: 0;
+
+        }
+        .fullcontainer{
+            display: flex;
+            flex-direction: row;
+            align-items: flex-end;
+            padding: auto;
+        }
+        .gameimage{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            width: 100%;
+            background-repeat: no-repeat;
+        }
+
+     
+
+        #canvas {
+            background-image: url('http://127.0.0.1:3001/findTheGift/gift.svg');
+            height: 100vh;
+            width:100%;
+            background-repeat: no-repeat;
+           
+    }
+
+    #mydiv {
+  position: absolute;
+  z-index: 0;
+  background-color: #f1f1f1;
+  text-align: center;
+  border: 1px solid #d3d3d3;
+}
+
+#mydivheader {
+
+  cursor: move;
+  z-index: 0;
+  background-color: #2196F3;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+}
+
+    </style>
+
+</head>
+<body>
+
+    <div class="fullcontainer">
+       
+        <div class="gameimage"> 
+           
+           
+                
+        </div>
+
+        <div id="mydiv">
+          <div id="mydivheader"></div>
+        </div>
+    </div>
+
+
+
+    <script>
+
+      dragElement(document.getElementById("mydiv"));
+      
+      function dragElement(elmnt) {
+        var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+        if (document.getElementById(elmnt.id + "header")) {
+          document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+        } else {
+          elmnt.onmousedown = dragMouseDown;
+        }
+      
+        function dragMouseDown(e) {
+          e = e || window.event;
+          e.preventDefault();
+          // get the mouse cursor position at startup:
+          pos3 = e.clientX;
+          pos4 = e.clientY;
+          document.onmouseup = closeDragElement;
+          // call a function whenever the cursor moves:
+          document.onmousemove = elementDrag;
+        }
+      
+        function elementDrag(e) {
+          e = e || window.event;
+          e.preventDefault();
+          // calculate the new cursor position:
+          pos1 = pos3 - e.clientX;
+          pos2 = pos4 - e.clientY;
+          pos3 = e.clientX;
+          pos4 = e.clientY;
+          // set the element's new position:
+          elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+          elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+        }
+      
+        function closeDragElement() {
+          /* stop moving when mouse button is released:*/
+          document.onmouseup = null;
+          document.onmousemove = null;
+        }
+      }
+      </script>
+
+  
+
+    
+</body>
+</html>
